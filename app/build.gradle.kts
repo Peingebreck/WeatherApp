@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.parcelize)
 }
 
 android {
     namespace = "com.example.android.weatherapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.android.weatherapp"
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
         resources {
@@ -59,6 +61,25 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation(libs.mvikotlin.main)
+    implementation(libs.mvikotlin.core)
+    implementation(libs.mvikotlin.coroutines)
+
+    implementation(libs.decompose.core)
+    implementation(libs.decompose.jetpack)
+
+    implementation(libs.room.core)
+    ksp(libs.room.compiler)
+
+    implementation(libs.dagger.core)
+    ksp(libs.dagger.compiler)
+
+    implementation(libs.glide.compose)
+    implementation(libs.retorfit.core)
+    implementation(libs.retorfit.gsonConverter)
+    implementation(libs.icons)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

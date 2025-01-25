@@ -1,10 +1,10 @@
-package com.example.android.weatherapp
+package com.example.android.weatherapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.android.weatherapp.ui.theme.WeatherAppTheme
+import com.example.android.weatherapp.presentation.ui.theme.WeatherAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

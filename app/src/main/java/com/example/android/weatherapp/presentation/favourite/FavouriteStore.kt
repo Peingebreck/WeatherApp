@@ -14,13 +14,13 @@ import com.example.android.weatherapp.presentation.favourite.FavouriteStore.Stat
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal interface FavouriteStore : Store<Intent, State, Label> {
+interface FavouriteStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
 
         data object ClickSearch : Intent
 
-        data object ClickToFavourite : Intent
+        data object ClickAddToFavourite : Intent
 
         data class CityItemClicked(val city: City) : Intent
     }
@@ -60,7 +60,7 @@ internal interface FavouriteStore : Store<Intent, State, Label> {
     }
 }
 
-internal class FavouriteStoreFactory @Inject constructor(
+class FavouriteStoreFactory @Inject constructor(
     private val storeFactory: StoreFactory,
     private val getFavouriteCitiesUseCase: GetFavouriteCitiesUseCase,
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase
@@ -121,7 +121,7 @@ internal class FavouriteStoreFactory @Inject constructor(
                     publish(Label.ClickSearch)
                 }
 
-                Intent.ClickToFavourite -> {
+                Intent.ClickAddToFavourite -> {
                     publish(Label.ClickToFavourite)
                 }
             }

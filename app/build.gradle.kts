@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.parcelize)
+    alias(libs.plugins.serialize)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -82,6 +84,8 @@ dependencies {
     implementation(libs.retorfit.core)
     implementation(libs.retorfit.gsonConverter)
     implementation(libs.icons)
+
+    implementation(libs.serialize.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

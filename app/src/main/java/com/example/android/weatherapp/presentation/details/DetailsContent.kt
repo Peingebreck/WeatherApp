@@ -109,7 +109,7 @@ private fun TopBar(
             titleContentColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = {
-            IconButton(onClick = { onBackClick }) {
+            IconButton(onClick = { onBackClick() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null,
@@ -118,7 +118,7 @@ private fun TopBar(
             }
         },
         actions = {
-            IconButton(onClick = { onClickChangeFavouriteStatus }) {
+            IconButton(onClick = { onClickChangeFavouriteStatus() }) {
                 val icon = if (isCityFavourite) {
                     Icons.Default.Star
                 } else {

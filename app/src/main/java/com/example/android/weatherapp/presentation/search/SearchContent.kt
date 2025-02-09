@@ -22,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,30 +52,39 @@ fun SearchContent(component: SearchComponent) {
     }
 
     SearchBar(
-        modifier = Modifier.focusRequester(focusRequester),
-        placeholder = { Text(text = stringResource(R.string.search)) },
-        query = state.searchQuery,
-        onQueryChange = { component.changeSearchQuery(it) },
-        onSearch = { component.onClickSearch() },
-        active = true,
-        onActiveChange = {},
-        leadingIcon = {
-            IconButton(onClick = { component.onClickBack() }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = null
-                )
-            }
+        inputField = {
+            SearchBarDefaults.InputField(
+                query = state.searchQuery,
+                placeholder = { Text(text = stringResource(R.string.search)) },
+                onQueryChange = { component.changeSearchQuery(it) },
+                onSearch = { component.onClickSearch() },
+                expanded = true,
+                onExpandedChange = {},
+                leadingIcon = {
+                    IconButton(onClick = { component.onClickBack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null
+                        )
+                    }
+                },
+                trailingIcon = {
+                    IconButton(onClick = { component.onClickSearch() }) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = null
+                        )
+                    }
+                }
+            )
         },
-        trailingIcon = {
-            IconButton(onClick = { component.onClickSearch() }) {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = null
-                )
-            }
-        }
-    ) {
+        expanded = true,
+        onExpandedChange = {
+            component.onClickBack()
+        },
+        modifier = Modifier.focusRequester(focusRequester),
+
+        ) {
         when (val searchState = state.searchState) {
             SearchStore.State.SearchState.EmptyResult -> {
                 Text(
